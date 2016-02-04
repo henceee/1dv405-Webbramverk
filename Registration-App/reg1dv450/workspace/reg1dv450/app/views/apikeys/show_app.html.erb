@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+    <div class="notice">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<h1><%= @app.name %></h1>
+
+<p>Key: <%= @app.key %> </p>
+
+<p><%= link_to("Delete", destroyapp_path(@app)) %></p>
+
+<p><%= link_to("Back", apikey_path) %></p>

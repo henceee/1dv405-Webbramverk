@@ -1,0 +1,30 @@
+<% if @user.errors.any? %>
+    <div id="error_message">
+        <h2>There were some errors in the form</h2>
+        <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+            <li> <%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+<h1>Register new user</h1>
+<fieldset>
+<%= form_for @user do |f| %>
+<!-- NAME -->
+<p><%= f.label :name %></p>
+<p><%= f.text_field :name %></p>
+<!-- EMAIL -->
+<p><%= f.label :email %></p>
+<p><%= f.text_field :email %></p>
+<!-- PASSWORD -->
+<p><%= f.label :password %></p>
+<p><%= f.password_field :password %></p>
+<!-- PASSWORD CONFIRMATION -->
+<p><%= f.label :password_confirmation %></p>
+<p><%= f.password_field :password_confirmation %></p>
+
+<p><%= f.submit "Create User" %></p>
+
+<% end %>
+</fieldset>

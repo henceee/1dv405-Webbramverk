@@ -1,11 +1,12 @@
 class SessionController < ApplicationController
+    include SessionHelper
     
     def login
         u = User.find_by_email(params[:email])
         if u && u.authenticate(params[:password])
               session[:userid] = u.id
               #warning: ADMIN must have id 0, rake db:seed to get admin and sample user
-              if(u.id === 0)
+              if(admin?)
                   redirect_to apikeyadmin_path
               else
                   redirect_to apikey_path

@@ -5,6 +5,9 @@ class ApikeysController < ApplicationController
     
     def show_app
         @app = Application.find_by_id(params[:id])
+        if(@app == nil)
+            redirect_to apikey_path
+        end
     end
     
     def new_app
@@ -19,7 +22,7 @@ class ApikeysController < ApplicationController
             @current_user.applications << @app
             redirect_to apikey_path, notice: "Application saved"
         else
-            render :action=>'new'
+            render :action=>'new_app'
         end
     end
     
@@ -33,8 +36,8 @@ class ApikeysController < ApplicationController
     
     def destroy
         @app = Application.find_by_id(params[:id]).destroy
-    
-            redirect_to apikeyadmin_path, notice: "App deleted"
+
+       redirect_to apikeyadmin_path, notice: "App deleted"
 
     end
     
